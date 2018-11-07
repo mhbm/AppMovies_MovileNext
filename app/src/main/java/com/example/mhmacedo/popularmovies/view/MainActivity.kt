@@ -1,7 +1,8 @@
-package com.example.mhmacedo.popularmovies
+package com.example.mhmacedo.popularmovies.view
 
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
+import com.example.mhmacedo.popularmovies.R
 
 class MainActivity : AppCompatActivity() {
 
