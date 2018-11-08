@@ -39,6 +39,7 @@ class FilmAdapter(
             private var SIZE_IMAGE = "w185/"
         }
 
+
         fun bindView(
             item: Film,
             listener: (Film) -> Unit
