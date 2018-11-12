@@ -8,8 +8,8 @@ import android.support.v7.widget.GridLayoutManager
 import android.util.Log
 import com.example.mhmacedo.popularmovies.R
 import com.example.mhmacedo.popularmovies.adapter.FilmAdapter
-import com.example.mhmacedo.popularmovies.api.FilmListResult
 import com.example.mhmacedo.popularmovies.model.Film
+import com.example.mhmacedo.popularmovies.model.FilmListResult
 import com.example.mhmacedo.popularmovies.retriever.FilmRetriever
 import kotlinx.android.synthetic.main.activity_main.*
 import org.jetbrains.anko.alert

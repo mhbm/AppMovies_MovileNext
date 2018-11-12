@@ -1,6 +1,7 @@
 package com.example.mhmacedo.popularmovies.api
 
 
+import com.example.mhmacedo.popularmovies.model.FilmListResult
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Query

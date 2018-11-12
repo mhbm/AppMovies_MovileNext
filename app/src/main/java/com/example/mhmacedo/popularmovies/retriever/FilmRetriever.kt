@@ -1,7 +1,7 @@
 package com.example.mhmacedo.popularmovies.retriever
 
-import com.example.mhmacedo.popularmovies.api.FilmListResult
 import com.example.mhmacedo.popularmovies.api.FilmService
+import com.example.mhmacedo.popularmovies.model.FilmListResult
 import okhttp3.ResponseBody
 import retrofit2.Callback
 import retrofit2.Converter

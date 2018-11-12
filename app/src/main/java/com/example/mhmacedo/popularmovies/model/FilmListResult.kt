@@ -1,6 +1,5 @@
-package com.example.mhmacedo.popularmovies.api
+package com.example.mhmacedo.popularmovies.model
 
-import com.example.mhmacedo.popularmovies.model.Film
 import com.google.gson.annotations.SerializedName
 
 

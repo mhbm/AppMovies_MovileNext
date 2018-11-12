@@ -3,11 +3,11 @@ package com.example.mhmacedo.popularmovies.adapter
 import android.content.Context
 import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.RecyclerView.Adapter
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import com.example.mhmacedo.popularmovies.R
 import com.example.mhmacedo.popularmovies.model.Film
 import kotlinx.android.synthetic.main.film_item.view.*
@@ -50,9 +50,10 @@ class FilmAdapter(
             val url = BASE_URL + SIZE_IMAGE + "/" + item.poster_path;
             Glide.with(this)
                 .load(url)
+                .apply(RequestOptions().override(185, 185))
                 .into(iv_film)
 
-            Log.e("errrrrrrrrrro", "ero")
+
             setOnClickListener { listener(item) }
         }
 
