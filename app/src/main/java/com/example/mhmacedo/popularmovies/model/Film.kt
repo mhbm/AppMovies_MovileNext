@@ -1,11 +1,18 @@
 package com.example.mhmacedo.popularmovies.model
 
+import com.google.gson.annotations.SerializedName
+
 data class Film(
-    val path: String,
+    @SerializedName(value = "poster_path")
+    val poster_path: String,
+    @SerializedName(value = "id")
     val id: Float,
+    @SerializedName(value = "title")
     val title: String,
-    val year: Int,
+    @SerializedName(value = "overview")
     val overview: String,
+    @SerializedName(value = "release_date")
     val release_date: String,
-    val vote_average: Float
+    @SerializedName(value = "vote_average")
+    val vote_average: Double
 )
