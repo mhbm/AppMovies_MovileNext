@@ -3,6 +3,7 @@ package com.example.mhmacedo.popularmovies.adapter
 import android.content.Context
 import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.RecyclerView.Adapter
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -46,12 +47,12 @@ class FilmAdapter(
         ) = with(itemView) {
             //iv_film.setImageDrawable(ContextCompat.getDrawable(context, item.imageResourceId))
 
-            val url = BASE_URL + SIZE_IMAGE + "/" + item.path;
+            val url = BASE_URL + SIZE_IMAGE + "/" + item.poster_path;
             Glide.with(this)
                 .load(url)
                 .into(iv_film)
 
-
+            Log.e("errrrrrrrrrro", "ero")
             setOnClickListener { listener(item) }
         }
 

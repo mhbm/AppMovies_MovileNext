@@ -19,9 +19,14 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
+
 class MainActivity : AppCompatActivity() {
 
     private val filmRetriever = FilmRetriever()
+
+    companion object {
+
+    }
 
     private val callback = object : Callback<FilmListResult> {
         override fun onFailure(call: Call<FilmListResult>, t: Throwable) {
@@ -29,24 +34,24 @@ class MainActivity : AppCompatActivity() {
             longToast("Fail loading films")
 
             Log.e("MainActivity", "Problem calling Github API", t)
-            Log.d("MainActivity", "Fail on URL:${call?.request()?.url()}")
+            Log.d("MainActivity", "Fail on URL:${call.request()?.url()}")
 
         }
 
         override fun onResponse(call: Call<FilmListResult>, response: Response<FilmListResult>) {
             //Success
 
-            longToast("Load finished.")
+            longToast("Load finished." + response.isSuccessful)
 
-            response?.isSuccessful.let {
-                response?.body()?.films?.let {
-                    val resultList = response.body()?.films ?: emptyList()
+            if (response.isSuccessful) {
+                response.body()?.results?.let {
+                    val resultList = response.body()?.results ?: emptyList()
                     recyclerView.adapter =
                             FilmAdapter(
                                 resultList,
                                 this@MainActivity
                             ) {
-                                longToast("Clicked Item: $it")
+                                longToast("Clicked ItemXXXX: $it")
                             }
                 }
             }
@@ -93,18 +98,29 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun recyclerViewItems(): List<Film> {
+
+
+//        val listTopRated = FilmService::listTopRated(FilmRetriever.API_KEY).execute()
+
+        //      longToast("teste$listTopRated")
+
+        filmRetriever.getFilmTopRated(callback)
+
+
+        /*
         val film = Film(
             "/2uNW4WbgBXL25BAbXGLnLqX71Sw.jpg",
             335983F,
             "Venom",
-            2018,
             "When Eddie Brock acquires the powers of a symbiote, he will have",
             "2018-10-03",
-            6.6F
+            6.6
 
         )
 
         return listOf(film, film, film, film, film, film)
+        */
+        return emptyList()
     }
 
 

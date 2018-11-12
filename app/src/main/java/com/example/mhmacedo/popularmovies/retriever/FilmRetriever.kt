@@ -2,9 +2,12 @@ package com.example.mhmacedo.popularmovies.retriever
 
 import com.example.mhmacedo.popularmovies.api.FilmListResult
 import com.example.mhmacedo.popularmovies.api.FilmService
+import okhttp3.ResponseBody
 import retrofit2.Callback
+import retrofit2.Converter
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.lang.reflect.Type
 
 class FilmRetriever {
 
@@ -20,6 +23,9 @@ class FilmRetriever {
         val retrofit = Retrofit.Builder()
             .baseUrl(BASE_URL_POPULAR)
             .addConverterFactory(
+                nullOnEmptyConverterFactory
+            )
+            .addConverterFactory(
                 GsonConverterFactory.create()
             )
             .build()
@@ -28,8 +34,20 @@ class FilmRetriever {
     }
 
     fun getFilmTopRated(callback: Callback<FilmListResult>) {
-        val call = service.listTopRated("api_key:$API_KEY")
+        val call = service.listTopRated(API_KEY)
         call.enqueue(callback)
     }
 
+}
+
+val nullOnEmptyConverterFactory = object : Converter.Factory() {
+    fun converterFactory() = this
+    override fun responseBodyConverter(type: Type, annotations: Array<out Annotation>, retrofit: Retrofit) =
+        object : Converter<ResponseBody, Any?> {
+            val nextResponseBodyConverter =
+                retrofit.nextResponseBodyConverter<Any?>(converterFactory(), type, annotations)
+
+            override fun convert(value: ResponseBody) =
+                if (value.contentLength() != 0L) nextResponseBodyConverter.convert(value) else null
+        }
 }
