@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorBackGround">
+
+    <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:animateLayoutChanges="true"
+            android:background="@color/colorBackGround">
+
+        <android.support.constraint.Guideline
+                android:id="@+id/begin_margin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_begin="16dp"/>
+
+        <android.support.constraint.Guideline
+                android:id="@+id/end_margin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_end="16dp"/>
+
+        <ImageView
+                android:layout_width="150dp"
+                android:layout_height="184dp" app:srcCompat="@drawable/image_test_film"
+                android:id="@+id/ivMovie" app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginTop="16dp"
+                app:layout_constraintStart_toStartOf="@+id/begin_margin"
+        />
+
+        <TextView
+                android:text="Vote Average:"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="serif-monospace"
+                android:id="@+id/tv_MovieVoteAverage" app:layout_constraintEnd_toStartOf="@+id/end_margin"
+                android:layout_marginEnd="8dp" android:layout_marginRight="8dp"
+                app:layout_constraintStart_toEndOf="@+id/ivMovie" android:layout_marginLeft="8dp"
+                android:layout_marginStart="8dp" app:layout_constraintHorizontal_bias="0.511"
+                android:layout_marginTop="40dp" app:layout_constraintTop_toTopOf="parent"
+                android:textSize="12dp"/>
+
+        <TextView
+                android:text="TextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tv_MovieHomePage" app:layout_constraintEnd_toStartOf="@+id/end_margin"
+                android:layout_marginEnd="8dp" android:layout_marginRight="8dp"
+                app:layout_constraintStart_toEndOf="@+id/ivMovie" android:layout_marginLeft="8dp"
+                android:layout_marginStart="8dp" android:layout_marginTop="40dp"
+                app:layout_constraintTop_toBottomOf="@+id/tv_MovieVoteAverage"
+                android:fontFamily="serif-monospace"
+                android:textSize="12dp"
+                tools:text="http://bohemianrhapsody.com" app:layout_constraintHorizontal_bias="0.47"/>
+        <TextView
+                android:text="TextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tv_Movie_ReleaseDate" app:layout_constraintEnd_toStartOf="@+id/end_margin"
+                android:layout_marginEnd="8dp" android:layout_marginRight="8dp"
+                app:layout_constraintStart_toEndOf="@+id/ivMovie" android:layout_marginLeft="8dp"
+                android:layout_marginStart="8dp"
+                android:fontFamily="serif-monospace"
+                android:textSize="12dp"
+                app:layout_constraintTop_toBottomOf="@+id/tv_MovieHomePage" tools:text="2018-10-24"
+                app:layout_constraintHorizontal_bias="0.504" android:layout_marginTop="40dp"/>
+
+        <TextView
+                android:text="TextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tvMovieTitle" android:layout_marginTop="24dp"
+                app:layout_constraintTop_toBottomOf="@+id/ivMovie"
+                tools:text="Bohemian Rhapsody"
+                android:fontFamily="serif-monospace"
+                android:textSize="18dp"
+                android:layout_marginEnd="8dp" app:layout_constraintEnd_toStartOf="@+id/end_margin"
+                android:layout_marginRight="8dp" android:layout_marginStart="8dp"
+                app:layout_constraintStart_toStartOf="@+id/begin_margin" android:layout_marginLeft="8dp"/>
+
+        <TextView
+                android:text="TextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content" android:id="@+id/textView5"
+                app:layout_constraintEnd_toStartOf="@+id/end_margin"
+                app:layout_constraintStart_toStartOf="@+id/begin_margin"
+                android:textSize="14dp"
+                android:fontFamily="serif-monospace"
+                app:layout_constraintTop_toBottomOf="@+id/tvMovieTitle"
+                tools:text="Singer Freddie Mercury, guitarist Brian May, drummer Roger Taylor and bass guitarist John Deacon take the music world by storm when they form the rock 'n' roll band Queen in 1970. Hit songs become instant classics. When Mercury's increasingly wild lifestyle starts to spiral out of control, Queen soon faces its greatest challenge yet – finding a way to keep the band together amid the success and excess."
+                app:layout_constraintHorizontal_bias="0.166" android:layout_marginTop="24dp"/>
+    </android.support.constraint.ConstraintLayout>
+</android.support.v4.widget.NestedScrollView>
