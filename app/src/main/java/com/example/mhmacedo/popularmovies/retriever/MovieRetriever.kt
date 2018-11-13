@@ -1,7 +1,7 @@
 package com.example.mhmacedo.popularmovies.retriever
 
-import com.example.mhmacedo.popularmovies.api.FilmService
-import com.example.mhmacedo.popularmovies.model.FilmListResult
+import com.example.mhmacedo.popularmovies.api.MovieService
+import com.example.mhmacedo.popularmovies.model.MovieListResult
 import okhttp3.ResponseBody
 import retrofit2.Callback
 import retrofit2.Converter
@@ -11,7 +11,7 @@ import java.lang.reflect.Type
 
 class FilmRetriever {
 
-    private val service: FilmService
+    private val service: MovieService
 
     companion object {
         //    const val BASE_URL_TOPRATED = "https://api.themoviedb.org/3/movie/top_rated"
@@ -30,10 +30,10 @@ class FilmRetriever {
             )
             .build()
 
-        service = retrofit.create(FilmService::class.java)
+        service = retrofit.create(MovieService::class.java)
     }
 
-    fun getFilmTopRated(callback: Callback<FilmListResult>) {
+    fun getFilmTopRated(callback: Callback<MovieListResult>) {
         val call = service.listTopRated(API_KEY)
         call.enqueue(callback)
     }

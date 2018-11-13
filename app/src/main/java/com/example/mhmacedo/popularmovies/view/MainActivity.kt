@@ -7,9 +7,9 @@ import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.GridLayoutManager
 import android.util.Log
 import com.example.mhmacedo.popularmovies.R
-import com.example.mhmacedo.popularmovies.adapter.FilmAdapter
-import com.example.mhmacedo.popularmovies.model.Film
-import com.example.mhmacedo.popularmovies.model.FilmListResult
+import com.example.mhmacedo.popularmovies.adapter.MovieAdapter
+import com.example.mhmacedo.popularmovies.model.Movie
+import com.example.mhmacedo.popularmovies.model.MovieListResult
 import com.example.mhmacedo.popularmovies.retriever.FilmRetriever
 import kotlinx.android.synthetic.main.activity_main.*
 import org.jetbrains.anko.alert
@@ -28,8 +28,8 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    private val callback = object : Callback<FilmListResult> {
-        override fun onFailure(call: Call<FilmListResult>, t: Throwable) {
+    private val callback = object : Callback<MovieListResult> {
+        override fun onFailure(call: Call<MovieListResult>, t: Throwable) {
             //Fail
             longToast("Fail loading films")
 
@@ -38,7 +38,7 @@ class MainActivity : AppCompatActivity() {
 
         }
 
-        override fun onResponse(call: Call<FilmListResult>, response: Response<FilmListResult>) {
+        override fun onResponse(call: Call<MovieListResult>, response: Response<MovieListResult>) {
             //Success
 
             longToast("Load finished." + response.isSuccessful)
@@ -47,7 +47,7 @@ class MainActivity : AppCompatActivity() {
                 response.body()?.results?.let {
                     val resultList = response.body()?.results ?: emptyList()
                     recyclerView.adapter =
-                            FilmAdapter(
+                            MovieAdapter(
                                 resultList,
                                 this@MainActivity
                             ) {
@@ -84,7 +84,7 @@ class MainActivity : AppCompatActivity() {
         recyclerView.layoutManager = gridManager
 
 
-        recyclerView.adapter = FilmAdapter(
+        recyclerView.adapter = MovieAdapter(
             recyclerViewItems(),
             this
         ) {
@@ -97,10 +97,10 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    private fun recyclerViewItems(): List<Film> {
+    private fun recyclerViewItems(): List<Movie> {
 
 
-//        val listTopRated = FilmService::listTopRated(FilmRetriever.API_KEY).execute()
+//        val listTopRated = MovieService::listTopRated(FilmRetriever.API_KEY).execute()
 
         //      longToast("teste$listTopRated")
 
@@ -108,7 +108,7 @@ class MainActivity : AppCompatActivity() {
 
 
         /*
-        val film = Film(
+        val movie = Movie(
             "/2uNW4WbgBXL25BAbXGLnLqX71Sw.jpg",
             335983F,
             "Venom",

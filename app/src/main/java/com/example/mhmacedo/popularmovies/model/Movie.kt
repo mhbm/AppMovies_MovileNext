@@ -2,7 +2,7 @@ package com.example.mhmacedo.popularmovies.model
 
 import com.google.gson.annotations.SerializedName
 
-data class Film(
+data class Movie(
     @SerializedName(value = "poster_path")
     val poster_path: String,
     @SerializedName(value = "id")
