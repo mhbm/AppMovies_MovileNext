@@ -10,7 +10,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.example.mhmacedo.popularmovies.R
 import com.example.mhmacedo.popularmovies.model.Movie
-import kotlinx.android.synthetic.main.film_item.view.*
+import kotlinx.android.synthetic.main.movie_item.view.*
 
 class MovieAdapter(
     private val items: List<Movie>,
@@ -19,7 +19,7 @@ class MovieAdapter(
 ) : Adapter<MovieAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(context).inflate(R.layout.film_item, parent, false)
+        val view = LayoutInflater.from(context).inflate(R.layout.movie_item, parent, false)
         return ViewHolder(view)
     }
 
