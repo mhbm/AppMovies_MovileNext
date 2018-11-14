@@ -3,7 +3,6 @@ package com.example.mhmacedo.popularmovies.view
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import com.bumptech.glide.Glide
-import com.bumptech.glide.request.RequestOptions
 import com.example.mhmacedo.popularmovies.R
 import com.example.mhmacedo.popularmovies.adapter.MovieAdapter
 import com.example.mhmacedo.popularmovies.model.Movie
@@ -32,11 +31,11 @@ class MovieDetailActivity : AppCompatActivity() {
         tv_Movie_ReleaseDate.text = movieChoose.release_date
         tv_MovieOverview.text = movieChoose.overview
 
-        val url = MovieAdapter.ViewHolder.BASE_URL + "w300" + "/" + movieChoose.poster_path;
+        val url = MovieAdapter.ViewHolder.BASE_URL + MovieAdapter.ViewHolder.SIZE_IMAGE + "/" + movieChoose.poster_path;
 
         Glide.with(this)
             .load(url)
-            .apply(RequestOptions().override(300, 169))
+            //   .apply(RequestOptions().override(300, 169))
             .into(iv_MovieDetail)
 
     }
