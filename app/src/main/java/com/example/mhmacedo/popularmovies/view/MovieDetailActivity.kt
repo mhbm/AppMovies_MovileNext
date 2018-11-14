@@ -7,6 +7,7 @@ import com.example.mhmacedo.popularmovies.R
 import com.example.mhmacedo.popularmovies.adapter.MovieAdapter
 import com.example.mhmacedo.popularmovies.model.Movie
 import kotlinx.android.synthetic.main.activity_movie_detail.*
+import org.jetbrains.anko.longToast
 
 class MovieDetailActivity : AppCompatActivity() {
 
@@ -22,6 +23,9 @@ class MovieDetailActivity : AppCompatActivity() {
 
         putInformation()
 
+        fab.setOnClickListener {
+            longToast("aeeeeee")
+        }
 
     }
 

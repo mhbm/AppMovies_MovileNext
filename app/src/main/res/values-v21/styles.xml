@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="FavoriteFAB">
+        <item name="android:backgroundTint">#FF4E53</item>
+        <item name="android:src">@drawable/icon_favorite</item>
+    </style>
+</resources>
