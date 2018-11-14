@@ -36,8 +36,8 @@ class MovieAdapter(
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         companion object {
-            private var BASE_URL = "http://image.tmdb.org/t/p/"
-            private var SIZE_IMAGE = "w185/"
+            var BASE_URL = "http://image.tmdb.org/t/p/"
+            var SIZE_IMAGE = "w185/"
         }
 
 

@@ -1,6 +1,7 @@
 package com.example.mhmacedo.popularmovies.view
 
 import android.content.Context
+import android.content.Intent
 import android.net.ConnectivityManager
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
@@ -10,7 +11,7 @@ import com.example.mhmacedo.popularmovies.R
 import com.example.mhmacedo.popularmovies.adapter.MovieAdapter
 import com.example.mhmacedo.popularmovies.model.Movie
 import com.example.mhmacedo.popularmovies.model.MovieListResult
-import com.example.mhmacedo.popularmovies.retriever.FilmRetriever
+import com.example.mhmacedo.popularmovies.retriever.MovieRetriever
 import kotlinx.android.synthetic.main.activity_main.*
 import org.jetbrains.anko.alert
 import org.jetbrains.anko.longToast
@@ -22,10 +23,10 @@ import retrofit2.Response
 
 class MainActivity : AppCompatActivity() {
 
-    private val filmRetriever = FilmRetriever()
+    private val movieRetriever = MovieRetriever()
 
     companion object {
-
+        const val EXTRA_MOVIE = "EXTRA_MOVIE"
     }
 
     private val callback = object : Callback<MovieListResult> {
@@ -41,7 +42,7 @@ class MainActivity : AppCompatActivity() {
         override fun onResponse(call: Call<MovieListResult>, response: Response<MovieListResult>) {
             //Success
 
-            longToast("Load finished." + response.isSuccessful)
+            //          longToast("Load finished." + response.isSuccessful)
 
             if (response.isSuccessful) {
                 response.body()?.results?.let {
@@ -50,8 +51,11 @@ class MainActivity : AppCompatActivity() {
                             MovieAdapter(
                                 resultList,
                                 this@MainActivity
-                            ) {
-                                longToast("Clicked ItemXXXX: $it")
+                            ) { movieChoose ->
+                                val intent = Intent(this@MainActivity, MovieDetailActivity::class.java)
+                                intent.putExtra(EXTRA_MOVIE, movieChoose)
+                                startActivity(intent)
+//                                longToast("Clicked ItemXXXX: $it")
                             }
                 }
             }
@@ -89,7 +93,7 @@ class MainActivity : AppCompatActivity() {
             this
         ) {
             longToast("Clicked item: $it.title")
-            filmRetriever.getFilmTopRated(
+            movieRetriever.getFilmTopRated(
                 callback
             )
         }
@@ -104,7 +108,7 @@ class MainActivity : AppCompatActivity() {
 
         //      longToast("teste$listTopRated")
 
-        filmRetriever.getFilmTopRated(callback)
+        movieRetriever.getFilmTopRated(callback)
 
 
         /*

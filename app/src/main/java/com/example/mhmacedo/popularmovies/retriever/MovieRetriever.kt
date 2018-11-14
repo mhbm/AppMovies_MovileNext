@@ -9,7 +9,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.lang.reflect.Type
 
-class FilmRetriever {
+class MovieRetriever {
 
     private val service: MovieService
 
