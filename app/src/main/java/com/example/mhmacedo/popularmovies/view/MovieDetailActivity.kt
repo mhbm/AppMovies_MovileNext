@@ -3,6 +3,7 @@ package com.example.mhmacedo.popularmovies.view
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import com.example.mhmacedo.popularmovies.R
 import com.example.mhmacedo.popularmovies.adapter.MovieAdapter
 import com.example.mhmacedo.popularmovies.model.Movie
@@ -17,9 +18,9 @@ class MovieDetailActivity : AppCompatActivity() {
         setContentView(R.layout.activity_movie_detail)
 
 
-        movieChoose = intent.extras.get(MainActivity.EXTRA_MOVIE) as Movie
+        movieChoose = intent.extras!!.get(MainActivity.EXTRA_MOVIE) as Movie
 
-        //longToast("teste" + movieChoose)
+
         putInformation()
 
 
@@ -35,7 +36,7 @@ class MovieDetailActivity : AppCompatActivity() {
 
         Glide.with(this)
             .load(url)
-            //.apply(RequestOptions().override(185, 185))
+            .apply(RequestOptions().override(300, 169))
             .into(iv_MovieDetail)
 
     }
