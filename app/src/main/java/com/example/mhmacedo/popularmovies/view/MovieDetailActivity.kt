@@ -52,7 +52,7 @@ class MovieDetailActivity : AppCompatActivity() {
             }
         }
 
-        val movieExistsDb = db!!.movieDao().findMovie(movieChoose.id)
+        var movieExistsDb = db!!.movieDao().findMovie(movieChoose.id)
 
         if (movieExistsDb != null) {
             // longToast("JA EXISTE")
@@ -64,15 +64,11 @@ class MovieDetailActivity : AppCompatActivity() {
             changeFabBackground(Color.RED)
         }
 
-
-
-
+        
         putInformation()
 
         fab.setOnClickListener {
 
-
-            //   longToast(movieTesteXXXX.title)
 
             val movieTeste = com.example.mhmacedo.popularmovies.dao.Movie(
                 movieChoose.id,
@@ -83,9 +79,19 @@ class MovieDetailActivity : AppCompatActivity() {
                 movieChoose.poster_path
             )
 
-            //Insert into database
-            db!!.movieDao().insert(movieTeste)
+            if (movieExistsDb == null) {
+                //Insert into database
+                db!!.movieDao().insert(movieTeste)
+                changeFabBackground(Color.BLACK)
 
+            } else {
+                //Remove into database
+                db!!.movieDao().deleteMovie(movieTeste.id)
+                changeFabBackground(Color.RED)
+
+            }
+
+            movieExistsDb = db!!.movieDao().findMovie(movieChoose.id)
 
         }
 

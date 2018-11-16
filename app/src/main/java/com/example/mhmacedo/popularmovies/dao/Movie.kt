@@ -10,7 +10,7 @@ data class Movie(
     @PrimaryKey
     @NonNull
     @ColumnInfo(name = "id")
-    val word: Float,
+    val id: Float,
 
     @ColumnInfo(name = "title")
     var title: String,
