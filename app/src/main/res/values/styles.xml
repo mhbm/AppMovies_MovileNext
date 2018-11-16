@@ -9,7 +9,8 @@
     </style>
 
     <style name="FavoriteFAB">
-        <item name="android:backgroundTint" tools:targetApi="lollipop">#FF4E53</item>
+        <!--<item name="android:backgroundTint" tools:targetApi="lollipop">#FF4E53</item>-->
+        <item name="android:backgroundTint" tools:targetApi="lollipop">#FF0000</item>
         <item name="android:src">@drawable/icon_favorite</item>
     </style>
 

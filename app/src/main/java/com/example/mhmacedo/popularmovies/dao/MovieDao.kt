@@ -19,7 +19,7 @@ interface MovieDao {
     fun getAllMovie(): LiveData<List<Movie>>
 
     @Query("SELECT * FROM movie_table WHERE id = :id LIMIT 1")
-    fun findMovie(id: Float): LiveData<List<Movie>>
+    fun findMovie(id: Float): Movie
 
     @Query("DELETE FROM movie_table WHERE id = :id ")
     fun deleteMovie(id: Float): Int

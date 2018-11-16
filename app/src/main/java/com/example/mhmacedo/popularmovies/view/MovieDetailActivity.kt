@@ -1,7 +1,12 @@
 package com.example.mhmacedo.popularmovies.view
 
+import android.annotation.TargetApi
 import android.arch.lifecycle.Transformations
+import android.graphics.Color
+import android.os.Build
 import android.os.Bundle
+import android.support.annotation.RequiresApi
+import android.support.v4.graphics.drawable.DrawableCompat
 import android.support.v7.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.example.mhmacedo.popularmovies.R
@@ -12,6 +17,7 @@ import com.example.mhmacedo.popularmovies.model.Movie
 import kotlinx.android.synthetic.main.activity_movie_detail.*
 import org.jetbrains.anko.longToast
 
+
 class MovieDetailActivity : AppCompatActivity() {
 
     private lateinit var movieChoose: Movie
@@ -19,6 +25,9 @@ class MovieDetailActivity : AppCompatActivity() {
     private lateinit var mDbWorkerThread: DbWorkerThread
     private var db: MovieRoomDatabase? = null
 
+    private lateinit var movieExistsDb: Movie
+
+    @RequiresApi(Build.VERSION_CODES.JELLY_BEAN)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_movie_detail)
@@ -34,8 +43,6 @@ class MovieDetailActivity : AppCompatActivity() {
 
         val allMovie = db!!.movieDao().getAllMovie()
 
-        val movie  : List<com.example.mhmacedo.popularmovies.dao.Movie>
-
 
         if (allMovie != null) {
             Transformations.map(allMovie) {
@@ -45,10 +52,27 @@ class MovieDetailActivity : AppCompatActivity() {
             }
         }
 
+        val movieExistsDb = db!!.movieDao().findMovie(movieChoose.id)
+
+        if (movieExistsDb != null) {
+            // longToast("JA EXISTE")
+
+            changeFabBackground(Color.BLACK)
+
+        } else {
+            //longToast("NAO EXISTE")
+            changeFabBackground(Color.RED)
+        }
+
+
+
+
         putInformation()
 
         fab.setOnClickListener {
 
+
+            //   longToast(movieTesteXXXX.title)
 
             val movieTeste = com.example.mhmacedo.popularmovies.dao.Movie(
                 movieChoose.id,
@@ -58,19 +82,23 @@ class MovieDetailActivity : AppCompatActivity() {
                 movieChoose.vote_average,
                 movieChoose.poster_path
             )
-            db?.movieDao()?.insert(movieTeste)
-            /*
-            //TODO 1
-            Cannot access database on the main thread since it may potentially lock the UI for a long period of time.
 
-             */
-
-           val task = Runnable { db?.movieDao()?.insert(movieTeste) }
-            mDbWorkerThread.postTask(task)
+            //Insert into database
+            db!!.movieDao().insert(movieTeste)
 
 
         }
 
+    }
+
+    @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
+    @RequiresApi(Build.VERSION_CODES.JELLY_BEAN)
+    private fun changeFabBackground(color: Int) {
+        var buttonDrawable = fab.background
+        buttonDrawable = DrawableCompat.wrap(buttonDrawable)
+        //the color is a direct color int and not a color resource
+        DrawableCompat.setTint(buttonDrawable, color)
+        fab.background = buttonDrawable
     }
 
     private fun putInformation() {

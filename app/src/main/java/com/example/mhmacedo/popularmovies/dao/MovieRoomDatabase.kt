@@ -14,17 +14,18 @@ abstract class MovieRoomDatabase : RoomDatabase() {
     companion object {
         private var instance: MovieRoomDatabase? = null
 
+        @Synchronized
         fun getDatabase(context: Context): MovieRoomDatabase? {
             if (instance == null) {
-                synchronized(MovieRoomDatabase::class.java) {
-                    instance = Room.databaseBuilder(
-                        context.applicationContext,
-                        MovieRoomDatabase::class.java,
-                        "movie_database"
-                    )
-                        .allowMainThreadQueries()
-                        .build()
-                }
+                //synchronized(MovieRoomDatabase::class.java) {
+                instance = Room.databaseBuilder(
+                    context.applicationContext,
+                    MovieRoomDatabase::class.java,
+                    "movie_database"
+                )
+                    .allowMainThreadQueries()
+                    .build()
+                // }
             }
             return instance
         }
