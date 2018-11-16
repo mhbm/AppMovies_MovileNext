@@ -37,7 +37,7 @@ class MovieAdapter(
 
         companion object {
             var BASE_URL = "http://image.tmdb.org/t/p/"
-            var SIZE_IMAGE = "w185/"
+            var SIZE_IMAGE = "w185"
         }
 
 

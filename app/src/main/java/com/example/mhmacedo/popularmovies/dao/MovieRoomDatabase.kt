@@ -6,29 +6,27 @@ import android.arch.persistence.room.RoomDatabase
 import android.content.Context
 
 @Database(entities = [Movie::class], version = 1, exportSchema = false)
-abstract class MovieRoomDatabase(val movieInsert: Movie) : RoomDatabase() {
+abstract class MovieRoomDatabase : RoomDatabase() {
 
 
     abstract fun movieDao(): MovieDao
 
     companion object {
-        private var INSTANCE: MovieRoomDatabase? = null
+        private var instance: MovieRoomDatabase? = null
 
-        fun getInstance(context: Context): MovieRoomDatabase? {
-            if (INSTANCE == null) {
+        fun getDatabase(context: Context): MovieRoomDatabase? {
+            if (instance == null) {
                 synchronized(MovieRoomDatabase::class.java) {
-                    INSTANCE = Room.databaseBuilder(
+                    instance = Room.databaseBuilder(
                         context.applicationContext,
                         MovieRoomDatabase::class.java,
-                        "movie_database.db"
-                    ).build()
+                        "movie_database"
+                    )
+                        .allowMainThreadQueries()
+                        .build()
                 }
             }
-            return INSTANCE
-        }
-
-        fun destroyInstance() {
-            INSTANCE = null
+            return instance
         }
 
     }

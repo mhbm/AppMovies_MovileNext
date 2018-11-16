@@ -13,7 +13,7 @@ data class Movie(
     val word: Float,
 
     @ColumnInfo(name = "title")
-    val title: String,
+    var title: String,
 
     @ColumnInfo(name = "overview")
     val overview: String,
@@ -25,6 +25,6 @@ data class Movie(
     val vote_average: Double,
 
     @ColumnInfo(name = "poster_path")
-    val poster_path: Double
+    val poster_path: String
 
 )

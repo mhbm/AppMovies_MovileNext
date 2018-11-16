@@ -12,17 +12,17 @@ interface MovieDao {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     fun insert(movie: Movie)
 
-    @Query("DELETE FROM MOVIE_TABLE ")
+    @Query("DELETE FROM movie_table ")
     fun deleteAll()
 
-    @Query("SELECT * FROM MOVIE_TABLE ORDER BY id ASC")
+    @Query("SELECT * FROM movie_table")
     fun getAllMovie(): LiveData<List<Movie>>
 
-    @Query("SELECT * FROM MOVIE_TABLE WHERE id = :id LIMIT 1")
+    @Query("SELECT * FROM movie_table WHERE id = :id LIMIT 1")
     fun findMovie(id: Float): LiveData<List<Movie>>
 
-    @Query("DELETE FROM MOVIE_TABLE WHERE id = :id ")
-    fun deleteMovie(id: Float): LiveData<List<Movie>>
+    @Query("DELETE FROM movie_table WHERE id = :id ")
+    fun deleteMovie(id: Float): Int
 
 
 }
