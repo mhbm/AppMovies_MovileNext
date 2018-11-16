@@ -7,6 +7,8 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.GridLayoutManager
 import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
 import com.example.mhmacedo.popularmovies.R
 import com.example.mhmacedo.popularmovies.adapter.MovieAdapter
 import com.example.mhmacedo.popularmovies.model.Movie
@@ -33,8 +35,6 @@ class MainActivity : AppCompatActivity() {
         override fun onFailure(call: Call<MovieListResult>, t: Throwable) {
             //Fail
             longToast("Fail loading films")
-
-            Log.e("MainActivity", "Problem calling Github API", t)
             Log.d("MainActivity", "Fail on URL:${call.request()?.url()}")
 
         }
@@ -83,32 +83,44 @@ class MainActivity : AppCompatActivity() {
         return networkInfo != null && networkInfo.isConnected
     }
 
-    private fun loadDefaultRecyclerView() {
+    private fun loadDefaultRecyclerView(option: Int? = 1) {
         val gridManager = GridLayoutManager(this, 2)
         recyclerView.layoutManager = gridManager
 
 
         recyclerView.adapter = MovieAdapter(
-            recyclerViewItems(),
+            recyclerViewItems(option),
             this
         ) {
-            longToast("Clicked item: $it.title")
-            movieRetriever.getFilmTopRated(
-                callback
-            )
+            //        longToast("Clicked item: $it.title")
+
+            if (option == 1) {
+                movieRetriever.getFilmTopRated(
+                    callback
+                )
+            } else if (option == 2) {
+                movieRetriever.getFilmPopularMovies(
+                    callback
+                )
+            }
         }
 
 
     }
 
-    private fun recyclerViewItems(): List<Movie> {
+    private fun recyclerViewItems(option: Int? = 1): List<Movie> {
 
 
 //        val listTopRated = MovieService::listTopRated(FilmRetriever.API_KEY).execute()
 
         //      longToast("teste$listTopRated")
 
-        movieRetriever.getFilmTopRated(callback)
+        if (option == 1) {
+            movieRetriever.getFilmTopRated(callback)
+        } else if (option == 2) {
+            movieRetriever.getFilmPopularMovies(callback)
+        }
+
 
 
         /*
@@ -127,5 +139,24 @@ class MainActivity : AppCompatActivity() {
         return emptyList()
     }
 
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.movie_menu, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
 
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+
+        when (item?.itemId) {
+            R.id.menu_topRated -> {
+                longToast("Option top rated selected")
+                loadDefaultRecyclerView(1)
+            }
+            R.id.menu_popular -> {
+                longToast("Option popular movies")
+                loadDefaultRecyclerView(2)
+            }
+        }
+
+        return super.onOptionsItemSelected(item)
+    }
 }

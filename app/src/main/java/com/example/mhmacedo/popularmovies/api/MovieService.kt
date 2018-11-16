@@ -11,4 +11,9 @@ interface MovieService {
     fun listTopRated(
         @Query("api_key") api_key: String
     ): Call<MovieListResult>
+
+    @GET("/3/movie/popular")
+    fun listPopularMovies(
+        @Query("api_key") api_key: String
+    ): Call<MovieListResult>
 }

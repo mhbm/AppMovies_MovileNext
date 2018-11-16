@@ -14,14 +14,13 @@ class MovieRetriever {
     private val service: MovieService
 
     companion object {
-        //    const val BASE_URL_TOPRATED = "https://api.themoviedb.org/3/movie/top_rated"
-        const val BASE_URL_POPULAR = "https://api.themoviedb.org/3/movie/"
+        const val BASE_URL = "https://api.themoviedb.org/3/movie/"
         const val API_KEY = "ff1c1e681fe8d4205ac3fa84c7cd2880"
     }
 
     init {
         val retrofit = Retrofit.Builder()
-            .baseUrl(BASE_URL_POPULAR)
+            .baseUrl(BASE_URL)
             .addConverterFactory(
                 nullOnEmptyConverterFactory
             )
@@ -35,6 +34,11 @@ class MovieRetriever {
 
     fun getFilmTopRated(callback: Callback<MovieListResult>) {
         val call = service.listTopRated(API_KEY)
+        call.enqueue(callback)
+    }
+
+    fun getFilmPopularMovies(callback: Callback<MovieListResult>) {
+        val call = service.listPopularMovies(API_KEY)
         call.enqueue(callback)
     }
 

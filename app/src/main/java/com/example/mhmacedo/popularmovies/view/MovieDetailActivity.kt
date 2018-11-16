@@ -83,12 +83,13 @@ class MovieDetailActivity : AppCompatActivity() {
                 //Insert into database
                 db!!.movieDao().insert(movieTeste)
                 changeFabBackground(Color.BLACK)
+                longToast("This film added in database")
 
             } else {
                 //Remove into database
                 db!!.movieDao().deleteMovie(movieTeste.id)
                 changeFabBackground(Color.RED)
-
+                longToast("This film removed in database")
             }
 
             movieExistsDb = db!!.movieDao().findMovie(movieChoose.id)
