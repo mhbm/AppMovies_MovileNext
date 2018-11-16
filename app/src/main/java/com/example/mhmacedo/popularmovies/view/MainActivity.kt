@@ -9,8 +9,10 @@ import android.support.v7.widget.GridLayoutManager
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import com.example.mhmacedo.popularmovies.MovieViewModel
 import com.example.mhmacedo.popularmovies.R
 import com.example.mhmacedo.popularmovies.adapter.MovieAdapter
+import com.example.mhmacedo.popularmovies.dao.MovieRoomDatabase
 import com.example.mhmacedo.popularmovies.model.Movie
 import com.example.mhmacedo.popularmovies.model.MovieListResult
 import com.example.mhmacedo.popularmovies.retriever.MovieRetriever
@@ -26,6 +28,11 @@ import retrofit2.Response
 class MainActivity : AppCompatActivity() {
 
     private val movieRetriever = MovieRetriever()
+
+    private var db: MovieRoomDatabase? = null
+
+    lateinit var movieViewModel: MovieViewModel
+
 
     companion object {
         const val EXTRA_MOVIE = "EXTRA_MOVIE"
@@ -87,21 +94,28 @@ class MainActivity : AppCompatActivity() {
         val gridManager = GridLayoutManager(this, 2)
         recyclerView.layoutManager = gridManager
 
+        if (option == 3) {
 
-        recyclerView.adapter = MovieAdapter(
-            recyclerViewItems(option),
-            this
-        ) {
-            //        longToast("Clicked item: $it.title")
+            //TODO 1 - iMPLEMENTATION INFORMATION IN DATABASE
 
-            if (option == 1) {
-                movieRetriever.getFilmTopRated(
-                    callback
-                )
-            } else if (option == 2) {
-                movieRetriever.getFilmPopularMovies(
-                    callback
-                )
+
+        } else {
+
+            recyclerView.adapter = MovieAdapter(
+                recyclerViewItems(option),
+                this
+            ) {
+                //        longToast("Clicked item: $it.title")
+
+                if (option == 1) {
+                    movieRetriever.getFilmTopRated(
+                        callback
+                    )
+                } else if (option == 2) {
+                    movieRetriever.getFilmPopularMovies(
+                        callback
+                    )
+                }
             }
         }
 
@@ -120,7 +134,6 @@ class MainActivity : AppCompatActivity() {
         } else if (option == 2) {
             movieRetriever.getFilmPopularMovies(callback)
         }
-
 
 
         /*
@@ -154,6 +167,9 @@ class MainActivity : AppCompatActivity() {
             R.id.menu_popular -> {
                 longToast("Option popular movies")
                 loadDefaultRecyclerView(2)
+            }
+            R.id.menu_yourList -> {
+                loadDefaultRecyclerView(3)
             }
         }
 
