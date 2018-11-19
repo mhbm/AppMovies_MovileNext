@@ -97,14 +97,17 @@ class MainActivity : AppCompatActivity() {
             db = MovieRoomDatabase.getDatabase(this)
 
             var allMovies = db!!.movieDao().getAllMovie()
-//
-//            var moviesNewTeste : List<Movie> = emptyList()
-//
-//            var cont: Int = 0
-//
-////            allMovies.forEach {
-////                moviesNewTeste.
-////            }
+
+            recyclerView.adapter =
+                    MovieAdapter(
+                        db!!.movieDao().getAllMovie(),
+                        this@MainActivity
+                    ) { movieChoose ->
+                        val intent = Intent(this@MainActivity, MovieDetailActivity::class.java)
+                        intent.putExtra(EXTRA_MOVIE, movieChoose)
+                        startActivity(intent)
+//                                longToast("Clicked ItemXXXX: $it")
+                    }
 
 
         } else {

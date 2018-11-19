@@ -24,7 +24,7 @@ class MovieDetailActivity : AppCompatActivity() {
     private lateinit var mDbWorkerThread: DbWorkerThread
     private var db: MovieRoomDatabase? = null
 
-    private lateinit var movieExistsDb: Movie
+    private var optionChoose: Int = 0
 
     @RequiresApi(Build.VERSION_CODES.JELLY_BEAN)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -35,21 +35,11 @@ class MovieDetailActivity : AppCompatActivity() {
         movieChoose = intent.extras!!.get(MainActivity.EXTRA_MOVIE) as Movie
 
 
+
         mDbWorkerThread = DbWorkerThread("dbWorkerThread")
         mDbWorkerThread.start()
 
         db = MovieRoomDatabase.getDatabase(this)
-
-//        val allMovie = db!!.movieDao().getAllMovie()
-//
-//
-//        if (allMovie != null) {
-//            Transformations.map(allMovie) {
-//                it.map {
-//                    longToast(it.title)
-//                }
-//            }
-//        }
 
         var movieExistsDb = db!!.movieDao().findMovie(movieChoose.id)
 
@@ -63,7 +53,7 @@ class MovieDetailActivity : AppCompatActivity() {
             changeFabBackground(Color.RED)
         }
 
-        
+
         putInformation()
 
         fab.setOnClickListener {
