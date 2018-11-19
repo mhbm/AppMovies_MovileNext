@@ -1,7 +1,6 @@
 package com.example.mhmacedo.popularmovies.view
 
 import android.annotation.TargetApi
-import android.arch.lifecycle.Transformations
 import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
@@ -12,8 +11,8 @@ import com.bumptech.glide.Glide
 import com.example.mhmacedo.popularmovies.R
 import com.example.mhmacedo.popularmovies.adapter.MovieAdapter
 import com.example.mhmacedo.popularmovies.dao.DbWorkerThread
+import com.example.mhmacedo.popularmovies.dao.Movie
 import com.example.mhmacedo.popularmovies.dao.MovieRoomDatabase
-import com.example.mhmacedo.popularmovies.model.Movie
 import kotlinx.android.synthetic.main.activity_movie_detail.*
 import org.jetbrains.anko.longToast
 
@@ -41,16 +40,16 @@ class MovieDetailActivity : AppCompatActivity() {
 
         db = MovieRoomDatabase.getDatabase(this)
 
-        val allMovie = db!!.movieDao().getAllMovie()
-
-
-        if (allMovie != null) {
-            Transformations.map(allMovie) {
-                it.map {
-                    longToast(it.title)
-                }
-            }
-        }
+//        val allMovie = db!!.movieDao().getAllMovie()
+//
+//
+//        if (allMovie != null) {
+//            Transformations.map(allMovie) {
+//                it.map {
+//                    longToast(it.title)
+//                }
+//            }
+//        }
 
         var movieExistsDb = db!!.movieDao().findMovie(movieChoose.id)
 

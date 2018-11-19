@@ -1,5 +1,6 @@
 package com.example.mhmacedo.popularmovies.model
 
+import com.example.mhmacedo.popularmovies.dao.Movie
 import com.google.gson.annotations.SerializedName
 
 

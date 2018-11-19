@@ -9,11 +9,10 @@ import android.support.v7.widget.GridLayoutManager
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
-import com.example.mhmacedo.popularmovies.MovieViewModel
 import com.example.mhmacedo.popularmovies.R
 import com.example.mhmacedo.popularmovies.adapter.MovieAdapter
+import com.example.mhmacedo.popularmovies.dao.Movie
 import com.example.mhmacedo.popularmovies.dao.MovieRoomDatabase
-import com.example.mhmacedo.popularmovies.model.Movie
 import com.example.mhmacedo.popularmovies.model.MovieListResult
 import com.example.mhmacedo.popularmovies.retriever.MovieRetriever
 import kotlinx.android.synthetic.main.activity_main.*
@@ -30,8 +29,6 @@ class MainActivity : AppCompatActivity() {
     private val movieRetriever = MovieRetriever()
 
     private var db: MovieRoomDatabase? = null
-
-    lateinit var movieViewModel: MovieViewModel
 
 
     companion object {
@@ -97,6 +94,17 @@ class MainActivity : AppCompatActivity() {
         if (option == 3) {
 
             //TODO 1 - iMPLEMENTATION INFORMATION IN DATABASE
+            db = MovieRoomDatabase.getDatabase(this)
+
+            var allMovies = db!!.movieDao().getAllMovie()
+//
+//            var moviesNewTeste : List<Movie> = emptyList()
+//
+//            var cont: Int = 0
+//
+////            allMovies.forEach {
+////                moviesNewTeste.
+////            }
 
 
         } else {

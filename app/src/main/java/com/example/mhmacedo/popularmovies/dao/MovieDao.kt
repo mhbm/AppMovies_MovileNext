@@ -1,6 +1,5 @@
 package com.example.mhmacedo.popularmovies.dao
 
-import android.arch.lifecycle.LiveData
 import android.arch.persistence.room.Dao
 import android.arch.persistence.room.Insert
 import android.arch.persistence.room.OnConflictStrategy
@@ -16,7 +15,7 @@ interface MovieDao {
     fun deleteAll()
 
     @Query("SELECT * FROM movie_table")
-    fun getAllMovie(): LiveData<List<Movie>>
+    fun getAllMovie(): List<Movie>
 
     @Query("SELECT * FROM movie_table WHERE id = :id LIMIT 1")
     fun findMovie(id: Float): Movie

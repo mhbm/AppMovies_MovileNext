@@ -1,6 +1,6 @@
 package com.example.mhmacedo.popularmovies.api
 
-import com.example.mhmacedo.popularmovies.model.Movie
+import com.example.mhmacedo.popularmovies.dao.Movie
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Path

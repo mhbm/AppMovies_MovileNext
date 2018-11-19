@@ -9,7 +9,7 @@ import android.view.ViewGroup
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.example.mhmacedo.popularmovies.R
-import com.example.mhmacedo.popularmovies.model.Movie
+import com.example.mhmacedo.popularmovies.dao.Movie
 import kotlinx.android.synthetic.main.movie_item.view.*
 
 class MovieAdapter(
